@@ -107,44 +107,28 @@ public class FileTest  {
  */
 class Greeting {
    
+   // Class attributes   
+
+   private String saying;
+
+      
+   
    /**  Parameterized  constructor  
     * @param int index - the index of the Greeting object
     * @param String words - the text of the Greeting object
     * @param double data - number assigned to value in the Greeting object
     */
-   public Greeting(int index, String words, double data) {
-      count = index;
+   public Greeting(String words) {
       saying = words; 
-      value = data;
    }
    
    /**  Default  constructor    
     */
    public Greeting () {
-      count = 0;
       saying = "";
-      value = 0.0;
+
   }
-   
-   /**  print the Greeting object to standard output 
-    */
-    public void print() {
-      System.out.println(count + ".\t " + saying + "\t\t" + value);
-   }
-   
-   /**  Decrease counter by subtractor   
-    * @param int subtractor - value subtracted from count
-    */
-   public void decreaseCounter(int subtractor) {
-      count -= subtractor;
-   }
-   
-   /**  Increase value by offset    
-    * @param double offset - amount added to value
-     */
-   public void increaseValue(double offset) {
-      value += offset;
-   }
+
    
    /**  Write the data in the class to a file.   
     * @param PrintWriter output - file text writer 
@@ -168,9 +152,4 @@ class Greeting {
       value = Double.parseDouble(t.nextToken());
    }
 
-   // Class attributes   
-   private int count;
-   private String saying;
-   private double value;
-      
 }
