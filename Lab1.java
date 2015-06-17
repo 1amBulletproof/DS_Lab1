@@ -29,9 +29,21 @@ public class Lab1{
 
 	public static void main(String [] args)
         {
+            File inputFile = new File(args[0]);
+
             
-		//main driving code
+            try
+            {
+                Scanner inputScanner = new Scanner(inputFile);
+                System.out.println(inputScanner.next());
+            } catch (Exception e){
+                System.out.println("There was no input file you suggested, please try again");
+                
+            }
+            
+            
+            
 
 	}//end of main method
 
-}//end of Project0_test class
+}//end of lab1
