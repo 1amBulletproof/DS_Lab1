@@ -19,12 +19,17 @@ Implementation goals:
 10. Use standard java practices & procedures
 
 */
+import java.io.*;
+import java.util.*;
+
 
 public class Lab1{
-	
+   String title;
+   String number;     
 
-	public static void main(String [] args){
-
+	public static void main(String [] args)
+        {
+            
 		//main driving code
 
 	}//end of main method
