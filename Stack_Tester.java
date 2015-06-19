@@ -3,13 +3,15 @@
 */
 public class Stack_Tester 
 {
-	public static void main(String[] args) 
+	public static void test() 
 	{
-		Stack_Array test_Stack = new Stack_Array();
+		Stack_Array test_Stack = new Stack_Array(5);
 		
 		
 		//array-based stack
+                
 		System.out.println("\nThese print statements are for the array-based stack");
+                System.out.println(test_Stack.get_MaxSize());
 		if (test_Stack.is_Empty()) System.out.println("The Stack is empty ");//expect it is empty
 		test_Stack.push("I");
 		test_Stack.push("Am");

@@ -1,10 +1,10 @@
 AAABBB 
 AB
-ε ( the empty string) 
 ABABABA
 ABAB
 BBAA
 BBBAA
+ε ( the empty string) 
 AAB
 AABBCCD 
 ABCBA

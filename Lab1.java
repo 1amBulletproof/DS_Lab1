@@ -23,23 +23,32 @@ import java.io.*;
 import java.util.*;
 
 
+
 public class Lab1{
    String title;
    String number;     
 
+   
+   
 	public static void main(String [] args)
         {
-            File inputFile = new File(args[0]);
-
+            //RuntimeMetric (long n, long t)     track the runtime
             
-            try
-            {
-                Scanner inputScanner = new Scanner(inputFile);
-                System.out.println(inputScanner.next());
-            } catch (Exception e){
-                System.out.println("There was no input file you suggested, please try again");
-                
-            }
+            String input;
+            
+            //test stack
+            Stack_Tester stackTest = new Stack_Tester();
+            stackTest.test();
+            //////
+            
+           //test I/O
+            File_IO fileIO = new File_IO(args[0], args[1]);
+            input = fileIO.get_NextInput();
+            System.out.println(input);
+            fileIO.write_Output(input);
+            fileIO.close_Output();
+            
+            
             
             
             

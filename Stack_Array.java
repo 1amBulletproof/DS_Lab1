@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class Stack_Array 
 {
-	private final int array_size = 100; 	//customize how bit the array will be
+	private int array_size = 100; 	//customize how bit the array will be
 	private int top;						// point to the 'data' which is at the top of the stack
 	private String[] data;					// array to hold the contents of the stack
 
@@ -16,8 +16,20 @@ public class Stack_Array
 		top = -1;		
 		data = new String[array_size]; 
 	} 
+        
+        public Stack_Array(int size)
+        {
+            top = -1;
+            array_size = size;
+            data = new String[array_size];
+        }
 	
-	public int get_Size()
+	public int get_MaxSize()
+	{
+		return (array_size);
+	}
+        
+        public int get_Size()
 	{
 		return (top+1);
 	}
