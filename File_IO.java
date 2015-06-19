@@ -24,45 +24,32 @@ public class File_IO {
     {
          //test i/o
           inputFile = new File(file_in);
-          outputFile = new File(file_out);      
+          outputFile = new File(file_out);   
+          try
+            {
+                inputScanner = new Scanner(inputFile);
+                printer = new PrintWriter(outputFile);
+
+            } catch (Exception e){
+                System.out.println("There was a problem with the input or output parameters, please try again");
+
+            }
     }
     
 
     
     public String get_NextInput()
     {
-            try
-            {
-                inputScanner = new Scanner(inputFile);
-                if (inputScanner.hasNext())
-                {
-                    input = inputScanner.next();
-                    return input;
-                }else{
-                    return "There is no more input";
-                }
-                
-
-                
-            } catch (Exception e){
-                System.out.println("There was no input file you suggested, please try again");
-                return null;
-            }
+        if (inputScanner.hasNextLine())
+        {
+            input = inputScanner.nextLine();
+            return input;
+        } else {return null;}           
     }
     
     public void write_Output(String output)
     {
-            try
-            {
-                printer = new PrintWriter(outputFile);
-                printer.println(output);
-                
-            } catch (Exception e){
-                System.out.println("There was no output file you suggested, please try again");
-                
-            }
-                            
-     
+        printer.println(output);
     }
    
     public void close_Output()

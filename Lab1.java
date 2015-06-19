@@ -34,21 +34,30 @@ public class Lab1{
         {
             //RuntimeMetric (long n, long t)     track the runtime
             
-            String input;
+            String input;  //contains input string 1 line at a time
+            String result; //contains matched languages for each input string
             
-            //test stack
-            Stack_Tester stackTest = new Stack_Tester();
-            stackTest.test();
-            //////
+//            //test stack
+//            Stack_Tester stackTest = new Stack_Tester();
+//            stackTest.test();
+//            //////
             
            //test I/O
             File_IO fileIO = new File_IO(args[0], args[1]);
             input = fileIO.get_NextInput();
-            System.out.println(input);
-            fileIO.write_Output(input);
+            while (input != null)
+            {
+                System.out.println(input);
+                
+                LanguageChecker lc = new LanguageChecker(input);
+                result = lc.checkLanguages();
+                input=input.concat("      ");
+                fileIO.write_Output(input.concat(result));
+             
+                input = fileIO.get_NextInput();
+            }
+            
             fileIO.close_Output();
-            
-            
             
             
             
