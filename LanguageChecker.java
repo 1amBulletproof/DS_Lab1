@@ -57,13 +57,19 @@ public class LanguageChecker {
         {
             temp = inputString.charAt(i);
             if (temp == 'A') {stackA.push(temp);} 
-            else if (temp == 'B') {stackB.push(temp);}  
+            else if (temp == 'B') {stackB.push(temp);} 
+            
         }
         
-        if (stackA.get_Size() != 0)
+        if (stackA.get_Size() != 0) // check that something was received
         {
-            if (stackA.get_Size() == stackB.get_Size()) {l1 = true;}
+            if (stackA.get_Size() + stackB.get_Size() == inputString.length())//confirm there were no letters other than 'A' or 'B'
+            {
+                if (stackA.get_Size() == stackB.get_Size()) {l1 = true;}
+            }
         }
+                
+        
         
     }
     

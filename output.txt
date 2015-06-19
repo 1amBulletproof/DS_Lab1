@@ -1,17 +1,33 @@
-AAABBB        L1 
-CAB       L1 
+AAABBB       L1 
+AB       L1 
+ε ( the empty string)      
 ABABABA      
 ABAB       L1 
 BBAA       L1 
 BBBAA      
+AAB      
+AABBCCD      
+ABCBA      
+ABBBA      
+ABBA       L1 
+ABAABBAAABBB       L1 
+AABACABAA      
+AABBBAABBB      
+      
+      
+CAB      
+ABABABA      
+ABAB       L1 
+BB AA      
+BBBAA      
 ε ( the empty string)       
       
 AAB      
-AABBCCD        L1 
-ABCBA       L1 
-      
+AABBCCD      
+ABCBA      
+12345      
 ABBBA      
-ABBA        L1 
-ABAABBAAABBB        L1 
-AABACABAA       
+ABBA       L1 
+ABAABBAAABBB       L1 
+AABACABAA      
 AABBBAABBB      
