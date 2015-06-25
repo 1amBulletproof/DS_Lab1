@@ -1,3 +1,4 @@
+GIVEN INPUT      
 AAABBB       L1 
 AB       L1 
 ε ( the empty string)      
@@ -13,21 +14,30 @@ ABBA       L1
 ABAABBAAABBB       L1 
 AABACABAA      
 AABBBAABBB      
-      
-      
+       L1 
+       L1 
+       L1 
+EXTRA INPUT      
 CAB      
-ABABABA      
+ABABA      
+12321      
+! !      
+abcccba      
+ABCba      
+1      
 ABAB       L1 
 BB AA      
+null      
 BBBAA      
-ε ( the empty string)       
-      
+ε      
+       L1 
 AAB      
 AABBCCD      
 ABCBA      
 12345      
 ABBBA      
 ABBA       L1 
-ABAABBAAABBB       L1 
-AABACABAA      
+ABAABBAAA      
+ BBB      
+AAB!BAA      
 AABBBAABBB      
