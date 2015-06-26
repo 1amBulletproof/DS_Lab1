@@ -99,74 +99,25 @@ public class LanguageChecker {
      */
     private void checkLanguage2()
     {
-        
-        
-    char temp;
-    boolean abFlag = true; //true when input string is null, A, or B
-    boolean bFlag = false; //true when a 'B' is received in input
-    for (int i = 0; i < inputString.length(); i++)
-    {
-        temp = inputString.charAt(i);
-        if (temp == 'A' && !bFlag) {stackA.push(temp);} 
-        else if (temp == 'B') 
-        {
-            stackB.push(temp);
-            bFlag = true;
-        } 
-        else {abFlag = false;}
-    }
-    if (abFlag)//confirm there were no letters other than 'A' or 'B' or empty string
-    {
-        if (popCompare()) {l2 = true;}
-    }
-    
-    
-//        char temp, lasttemp;
-////        System.out.println(inputString);
-//        try //necessary for empty stings
-//        {
-//            boolean abFlag = true;
-//            boolean abTransition = false;
-//            while (!stack1.is_Empty() && abFlag)
-//            {
-//                
-//                if (stack1.peek() != 'A' || stack1.peek() != 'B'){(abFlag = false);}
-//                else if (stack1.peek() == 'B') 
-//                { 
-//                    temp = stack1.pop();
-//                    stackB.push(temp);
-//                    lasttemp = temp;
-//                }
-//                
-//                
-//                
-//            }
-//            lasttemp = inputString.charAt(0);
-//         //check to see if this string even conforms at all
-//            stackA.push(lasttemp);
-//            if (lasttemp == 'A') 
-//            { 
-//                for (int i = 1; i < inputString.length(); i++)
-//                { 
-//                    temp = inputString.charAt(i);
-//                    if (temp != 'A' || temp != 'B')
-//                    {
-//                        if (temp == 'A') {stackA.push(temp);} 
-//                        else if (temp == 'B') {stackB.push(temp);} 
-//                        lasttemp = temp;  
-//                    }
-//                    
-//                }
-//            popCompare();
-//            if (stackA.is_Empty() && stackB.is_Empty()){l2 = true;}
-//            }
-//        }  catch (Exception e) 
-//        { 
-//            l2 = true; //means there is an empty line which fits the criteria of L2
-////            System.out.println(e);
-//        }
 
-          
+        char temp;
+        boolean abFlag = true; //true when input string is null, A, or B
+        boolean bFlag = false; //true when a 'B' is received in input
+        for (int i = 0; i < inputString.length(); i++)
+        {
+            temp = inputString.charAt(i);
+            if (temp == 'A' && !bFlag) {stackA.push(temp);} 
+            else if (temp == 'B') 
+            {
+                stackB.push(temp);
+                bFlag = true;
+            } 
+            else {abFlag = false;}
+        }
+        if (abFlag)//confirm there were no letters other than 'A' or 'B' or empty string
+        {
+            if (popCompare()) {l2 = true;}
+        }      
     }
     
 
