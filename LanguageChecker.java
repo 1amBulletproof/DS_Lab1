@@ -51,10 +51,36 @@ public class LanguageChecker {
             stackA.pop();
             stackB.pop();
         }
-        return (stackA.is_Empty() && stackB.is_Empty()); 
+        return (stackA.is_Empty() && stackB.is_Empty());   
+    }
+    
+    /**
+     * Pop StackA once and StackB twice until at least 1 is empty
+     * to see if they are equal in size
+     * note that each stack will be emptied
+     * @return boolean return whether each stack is of the same size
+     */
+    private boolean popB2Compare()
+    {
+        boolean passFlag = true;
+        {
+            while (!stackA.is_Empty() && !stackB.is_Empty())
+            {
+             stackA.pop();
+             stackB.pop();
+             if (stackB.is_Empty()){passFlag = false;}//account for odd case, i.e. 2 A's & 3 B's
+             stackB.pop();
+            }
+            if (passFlag){return (stackA.is_Empty() && stackB.is_Empty());}
+            else{return false;}
+        }
         
     }
     
+    /**
+     * Check all 5 languages against the input string for the class
+     * @return string result of language checks 
+     */
     public String checkLanguages()
     {
         //check input string against all languages & set flags accordingly
@@ -75,6 +101,8 @@ public class LanguageChecker {
      */
     private void checkLanguage1()
     {
+        stackA.emptyStack();
+        stackB.emptyStack();
         char temp;
         boolean abFlag = true; //true when input string is null, A, or B
         for (int i = 0; i < inputString.length(); i++)
@@ -99,10 +127,11 @@ public class LanguageChecker {
      */
     private void checkLanguage2()
     {
-
+        stackA.emptyStack();
+        stackB.emptyStack();
         char temp;
         boolean abFlag = true; //true when input string is null, A, or B
-        boolean bFlag = false; //true when a 'B' is received in input
+        boolean bFlag = false; //true when after a 'B' is received in input
         for (int i = 0; i < inputString.length(); i++)
         {
             temp = inputString.charAt(i);
@@ -124,10 +153,31 @@ public class LanguageChecker {
     
     /**
      * Checks an input string for A^nB^2n n >= 0 
+     * Sets l3 TRUE if the string matches Language 3
+     * Sets l3 FALSE if the string doesn't match Language 3
      */
     private void checkLanguage3()
     {
-        
+        stackA.emptyStack();
+        stackB.emptyStack();
+        char temp;
+        boolean abFlag = true; //true when input string is null, A, or B
+        boolean bFlag = false; //true when after a 'B' is received in input
+        for (int i = 0; i < inputString.length(); i++)
+        {
+            temp = inputString.charAt(i);
+            if (temp == 'A' && !bFlag) {stackA.push(temp);} 
+            else if (temp == 'B') 
+            {
+                stackB.push(temp);
+                bFlag = true;
+            } 
+            else {abFlag = false;}
+        }
+        if (abFlag)//confirm there were no letters other than 'A' or 'B' or empty string
+        {
+            if (popB2Compare()) {l3 = true;}
+        }    
         
     }
     

@@ -19,8 +19,10 @@ public class Stack_Tester
 		if (test_Stack.is_Empty()) System.out.println("The Stack is empty ");//expect it NOT empty
 		System.out.println("The stack has this many items on it: " + test_Stack.get_Size());
 		//System.out.println(test_Stack.display());//expect it to print 100 items
-		System.out.println(test_Stack.pop() + " " + test_Stack.pop() + " "  + test_Stack.pop());//expect "Yoda Am I"
-		System.out.println(test_Stack.pop());//expect an underflow error
+//		System.out.println(test_Stack.pop() + " " + test_Stack.pop() + " "  + test_Stack.pop());//expect "Yoda Am I"
+//		System.out.println(test_Stack.pop());//expect an underflow error
+                test_Stack.emptyStack();
+                System.out.println("The stack has this many items on it: " + test_Stack.get_Size());
 	
 
 		

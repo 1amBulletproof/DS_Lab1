@@ -62,6 +62,13 @@ public class Stack_LL_CHAR
 		}
 	}
 	
+        public void emptyStack()
+        {
+            while (!is_Empty())
+            {
+                pop();
+            }
+        }
 	
 //	public String display()
 //	{

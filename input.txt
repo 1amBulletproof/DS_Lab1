@@ -1,4 +1,5 @@
 GIVEN INPUT
+ABB
 AAABBB
 AB
 ε ( the empty string)
@@ -19,6 +20,7 @@ AABBBAABBB
 
 EXTRA INPUT
 CAB
+ABB
 ABABA
 12321
 ! !
@@ -31,6 +33,13 @@ null
 BBBAA
 ε
 
+AABBB
+AABBBB
+AAAB
+123
+zxy
+AB x
+ABB 89
 AAB
 AABBCCD
 ABCBA

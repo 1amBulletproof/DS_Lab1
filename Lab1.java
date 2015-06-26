@@ -24,9 +24,12 @@ public class Lab1{
 	public static void main(String [] args)
         {
             //RuntimeMetric (long n, long t)     track the runtime
-            
             String input;  //contains input string 1 line at a time
             String result; //contains matched languages for each input string
+           
+            //code only to test the stack: see Stack_Tester.java
+            Stack_Tester stackTest = new Stack_Tester();
+            stackTest.test();
             
            //test I/O
             File_IO fileIO = new File_IO(args[0], args[1]);
