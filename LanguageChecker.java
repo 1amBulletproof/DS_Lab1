@@ -324,6 +324,7 @@ public class LanguageChecker {
     /**
      * Checks an input string for the palindrome quality
      * IN KEEPING WITH THE THEME, AN EMPTY STRING WILL QUALIFY AS CORRECT FOR THIS LANGUAGE
+     * ALSO, SINGLE SYMBOLS WILL QUALIFY AS WELL: THEY TECHNICALLY ARE THE SAME BACKWARDS AND FORWARDS
      * for example, "ANA", "KAYAK", "NO LEMON NO MELON", etc are contained in language 6
      * for example, "", "I HATE THIS CLASS", "JK, I LIKE IT", etc are NOT contained in language 6
      * Sets l5 TRUE if the string matches language 6
@@ -331,14 +332,19 @@ public class LanguageChecker {
      */
     private void checkLanguage6()
     {
-        char temp;
-        boolean palindromeFlag = false;
+        stack1.emptyStack(); //clear the stack for use and fill it again
+        stringToStack(inputString);
+        char temp,stackTemp;
+        boolean palindromeFlag = true;
         for (int i = 0; i < inputString.length(); i++)
         {
             temp = inputString.charAt(i);
-            
+            stackTemp = stack1.pop();
+            if (temp != stackTemp) {palindromeFlag = false;}
+        }
+        l6 = palindromeFlag;           
     }
-    }
+    
     
     /**
      * Creates an output string based on the 
