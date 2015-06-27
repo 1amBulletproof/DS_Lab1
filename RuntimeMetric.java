@@ -16,7 +16,6 @@
  */
 public class RuntimeMetric {
 
-    private long size;
     private long runtime;
     
     /**
@@ -25,9 +24,9 @@ public class RuntimeMetric {
      *  @param n The size of the problem.
      *  @param t The time it took to solve the problem.
      */
-    public RuntimeMetric (long n, long t) {
+    public RuntimeMetric (long t) {
     
-        size = n;
+
         runtime = t;
     }
 
@@ -39,12 +38,5 @@ public class RuntimeMetric {
         return runtime;
     }
     
-    /**
-     *  Fetches the size of the problem.
-     *  @return A size that is determined by the way the problem is stated.
-     */
-    public long getSize() {
-        return size;
-    }
 
 }

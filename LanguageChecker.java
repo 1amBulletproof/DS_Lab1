@@ -8,8 +8,8 @@
  */
 public class LanguageChecker {
     public Stack_LL_CHAR stack1;
-    public Stack_LL_CHAR stackA;
-    public Stack_LL_CHAR stackB;
+    private Stack_LL_CHAR stackA;
+    private Stack_LL_CHAR stackB;
     String resultString = new String();
     String inputString;
     boolean l1,l2,l3,l4,l5,l6; //flags for whether the string conforms to a language

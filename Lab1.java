@@ -19,24 +19,25 @@ import java.util.*;
 
 public class Lab1{
    String title;
-   String number;     
+   String number;  
+   static RuntimeMetric metrics;
 
 	public static void main(String [] args)
         {
-            //RuntimeMetric (long n, long t)     track the runtime
+            long start = System.nanoTime();
+            long end;
             String input;  //contains input string 1 line at a time
             String result; //contains matched languages for each input string
            
-            //code only to test the stack: see Stack_Tester.java
-            Stack_Tester stackTest = new Stack_Tester();
-            stackTest.test();
-            
-           //test I/O
+//            //code only to test the stack: see Stack_Tester.java
+//            Stack_Tester stackTest = new Stack_Tester();
+//            stackTest.test();
+
             File_IO fileIO = new File_IO(args[0], args[1]);
             input = fileIO.get_NextInput();
             while (input != null)
             {
-                System.out.println(input);
+//                System.out.println(input);
                 
                 LanguageChecker lc = new LanguageChecker(input);
                 result = lc.checkLanguages();
@@ -47,7 +48,10 @@ public class Lab1{
             }
             
             fileIO.close_Output();
-            
+            end = System.nanoTime();
+            metrics = new RuntimeMetric(end - start);
+            System.out.println("\nThe program ran successfully, please check your output file for the results");
+            System.out.println("The Program took " + metrics.getRuntime() + " nano seconds");
 
 
 	}//end of main method
