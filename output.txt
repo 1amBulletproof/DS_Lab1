@@ -1,46 +1,48 @@
+       L1  L2  L3  L4  L5 
 GIVEN INPUT      
-ABB       L3 
-AAABBB       L1  L2 
-AB       L1  L2 
+ABB       L3  L4 
+AAABBB       L1  L2  L4 
+AB       L1  L2  L4 
 ε ( the empty string)      
 ABABABA      
-ABAB       L1 
+ABAB       L1  L4 
 BBAA       L1 
 BBBAA      
-AAB      
+AAB       L4 
 AABBCCD      
 ABCBA      
 ABBBA      
 ABBA       L1 
 ABAABBAAABBB       L1 
 AABACABAA      
-AABBBAABBB      
-       L1  L2  L3 
-       L1  L2  L3 
-       L1  L2  L3 
+AABBBAABBB       L4 
+       L1  L2  L3  L4  L5 
+       L1  L2  L3  L4  L5 
+       L1  L2  L3  L4  L5 
 EXTRA INPUT      
+ababaabab      
 CAB      
-ABB       L3 
+ABB       L3  L4 
 ABABA      
 12321      
 ! !      
 abcccba      
 ABCba      
 1      
-ABAB       L1 
+ABAB       L1  L4 
 BB AA      
 null      
 BBBAA      
 ε      
-       L1  L2  L3 
-AABBB      
-AABBBB       L3 
-AAAB      
+       L1  L2  L3  L4  L5 
+AABBB       L4 
+AABBBB       L3  L4 
+AAAB       L4 
 123      
 zxy      
 AB x      
 ABB 89      
-AAB      
+AAB       L4 
 AABBCCD      
 ABCBA      
 12345      
@@ -49,7 +51,20 @@ ABBA       L1
 ABAABBAAA      
  BBB      
 AAB!BAA      
-AABBBAABBB      
-       L1  L2  L3 
+AABBBAABBB       L4 
+       L1  L2  L3  L4  L5 
 aaaaabbbbb      
-AAAAABBBBB       L1  L2 
+AAAAABBBBB       L1  L2  L4 
+       L1  L2  L3  L4  L5 
+AEIOU       L5 
+       L1  L2  L3  L4  L5 
+AIOU       L5 
+AOU       L5 
+O       L5 
+U       L5 
+UA      
+IE      
+ AEIOU      
+       L1  L2  L3  L4  L5 
+EEEEEEEEEE       L5 
+EEEEAEEEEEE      

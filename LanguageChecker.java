@@ -12,7 +12,11 @@ public class LanguageChecker {
     public Stack_LL_CHAR stackB;
     String resultString = new String();
     String inputString;
-    boolean l1,l2,l3,l4,l5; //flags for whether the string conforms to a language
+    boolean l1,l2,l3,l4,l5,l6; //flags for whether the string conforms to a language
+    enum Vowels {A, E, I, O, U};
+   
+
+    
     
    /**
     * Class Constructor: instantiates several stacks and the input string
@@ -24,19 +28,19 @@ public class LanguageChecker {
         stackA = new Stack_LL_CHAR();
         stackB = new Stack_LL_CHAR();
         inputString = input;
-//        stringToStack(inputString);  
+        stringToStack(inputString);  
     }
     
-//    /**
-//     * Converts a String to a Stack data type
-//     * @param input String to be converted to a stack
-//     */
-//    private void stringToStack(String input)
-//    {
-//        try{
-//            for (int i = 0; i < input.length(); i++){stack1.push(input.charAt(i));}
-//        }  catch (Exception e) {} //accomodates an empty line scenario     
-//    }
+    /**
+     * Converts a String to a Stack data type
+     * @param input String from which to create a stack
+     */
+    private void stringToStack(String input)
+    {
+        try{
+            for (int i = 0; i < input.length(); i++){stack1.push(input.charAt(i));}
+        }  catch (Exception e) {} //accomodates an empty line scenario     
+    }
 
     /**
      * Pop stackA and StackB until at least 1 is empty 
@@ -58,7 +62,7 @@ public class LanguageChecker {
      * Pop StackA once and StackB twice until at least 1 is empty
      * to see if they are equal in size
      * note that each stack will be emptied
-     * @return boolean return whether each stack is of the same size
+     * @return boolean return whether each stack conforms to L3
      */
     private boolean popB2Compare()
     {
@@ -77,6 +81,23 @@ public class LanguageChecker {
         
     }
     
+    
+    /**
+     * Compare 2 reference stacks based on the size of stackA & stackB
+     * @return boolean return whether each stack conforms to L4
+     */
+    private boolean popNMCompare(Stack_LL_CHAR refA, Stack_LL_CHAR refB)
+    { 
+        if (refA.get_Size() == stackA.get_Size() && refB.get_Size() == stackB.get_Size())
+        {
+            refA.emptyStack();
+            refB.emptyStack();
+            return true;
+        }
+        else {return false;}
+    }
+    
+
     /**
      * Check all 5 languages against the input string for the class
      * @return string result of language checks 
@@ -89,6 +110,7 @@ public class LanguageChecker {
         checkLanguage3();
         checkLanguage4();
         checkLanguage5();
+        checkLanguage6();
         //create output string based on language flags
         setResultString();
         return resultString;
@@ -150,7 +172,6 @@ public class LanguageChecker {
     }
     
 
-    
     /**
      * Checks an input string for A^nB^2n n >= 0 
      * Sets l3 TRUE if the string matches Language 3
@@ -183,20 +204,140 @@ public class LanguageChecker {
     
     /**
      * Checks an input string for (A^nB^m)P n,m,p >= 0 
+     * Sets l4 TRUE if the string matches Language 4
+     * Sets l4 FALSE if the string doesn't match Language 4
      */
     private void checkLanguage4()
     {
+        boolean templ4 = true;
+        stackA.emptyStack();
+        stackB.emptyStack();
+        Stack_LL_CHAR stackRefA = new Stack_LL_CHAR();
+        Stack_LL_CHAR stackRefB = new Stack_LL_CHAR();
+        char temp;
+        boolean abFlag = true; //true when input string is null, A, or B
+        boolean bFlag = false; //true when after a 'B' is received in input
+        boolean refStackFlag = false; //true when reference stack complete
         
-        
+        for (int i = 0; i < inputString.length(); i++)
+        {
+            temp = inputString.charAt(i);
+            if (temp == 'A' && !bFlag && !refStackFlag) {stackA.push(temp);}//first set of A's
+            else if (temp == 'B' && !refStackFlag) //first set of B's
+            {
+                stackB.push(temp);
+                bFlag = true;
+            } 
+            else if (temp == 'A' && bFlag && !refStackFlag) //pattern determined
+            {                
+                stackRefA.push(temp);
+                bFlag = false;
+                refStackFlag = true;//transition to ref. stacks
+            }
+            else if (temp == 'A' && !bFlag && refStackFlag) {stackRefA.push(temp);} 
+            else if (temp == 'B' && refStackFlag) 
+            {
+                stackRefB.push(temp);
+                bFlag = true;
+            } 
+            else if (temp == 'A' && bFlag && refStackFlag)
+            {
+                //compare stackRefA to stackA & compare stackRefB to stackB
+                templ4 = templ4 && popNMCompare(stackRefA, stackRefB); //if ever a false value returned, false forever
+                stackRefA.push(temp);
+                bFlag = false;
+            }
+            else {abFlag = false;} //there is string input, but the string doesn't start with an A
+        }
+        if (abFlag)//confirm there were no letters other than 'A' or 'B' or empty string
+        {
+            if (stackRefA.is_Empty() && stackRefB.is_Empty()) {l4 = true;}//Essentially P = 1 or empty string
+            else{l4 = templ4 && popNMCompare(stackRefA, stackRefB);}
+        }  
     }
     
+    
+    private Vowels setEnum(char input)
+    {
+        Vowels temp = Vowels.A;
+        switch (input) 
+            {
+                case 'A': temp =  Vowels.A;
+                    break;
+                    
+                case 'E': temp =  Vowels.E;
+                    break;
+                       
+                case 'I': temp =  Vowels.I;
+                    break;
+                    
+                case 'O': temp =  Vowels.O;
+                    break;
+                     
+                case 'U': temp =  Vowels.U;
+                    break;       
+            }
+        return temp;
+    }
+    
+    
     /**
-     * Checks an input string for the palindrome quality
+     * Checks input string for language 5 parameters: 
+     * only upper-case vowels are present and are in the order "AEIOU"
+     * for example, "AI", "IOU", "AIOU", etc are contained in language 5
+     * for example, "IA", "OUIEA", "IO", etc are NOT contained in language 5
+     * IN KEEPING WITH THE THEME, AN EMPTY STRING WILL QUALIFY AS CORRECT FOR THIS LANGUAGE
+     * Sets l5 TRUE if the string matches language 5
+     * Sets l5 FALSE if the string doesn't match Language 5
      */
     private void checkLanguage5()
     {
-        
-        
+       Vowels inputChar;
+       Vowels nextInputChar;
+       char temp;
+       char nextTemp;
+       boolean invalidInput = false; //invalid input if (true) if non-vowel input or vowels out of order
+       
+        while (!stack1.is_Empty() && !invalidInput)
+        {
+            temp = stack1.pop();
+           
+            if (temp == 'A' || temp == 'E' || temp == 'I' || temp == 'O' || temp == 'U')
+            {
+                inputChar = setEnum(temp);  
+           
+                if (!stack1.is_Empty())
+                {//because you are moving backwards through the string, the next stack item should be less in enum value
+                    nextTemp = stack1.peek();
+                    nextInputChar = setEnum(nextTemp);
+                    invalidInput = (nextInputChar.ordinal() > inputChar.ordinal());
+                }
+                
+            }
+            else { invalidInput = true;}
+                    
+        }
+        l5 = !invalidInput;
+    }
+          
+    
+    /**
+     * Checks an input string for the palindrome quality
+     * IN KEEPING WITH THE THEME, AN EMPTY STRING WILL QUALIFY AS CORRECT FOR THIS LANGUAGE
+     * for example, "ANA", "KAYAK", "NO LEMON NO MELON", etc are contained in language 6
+     * for example, "", "I HATE THIS CLASS", "JK, I LIKE IT", etc are NOT contained in language 6
+     * Sets l5 TRUE if the string matches language 6
+     * Sets l5 FALSE if the string doesn't match Language 6
+     */
+    private void checkLanguage6()
+    {
+        char temp;
+        boolean palindromeFlag = false;
+        for (int i = 0; i < inputString.length(); i++)
+        {
+            temp = inputString.charAt(i);
+            
+    }
     }
     
     /**
@@ -210,6 +351,8 @@ public class LanguageChecker {
         if (l3 == true) {resultString += " L3 ";}
         if (l4 == true) {resultString += " L4 ";}
         if (l5 == true) {resultString += " L5 ";}
+        if (l6 == true) {resultString += " L6 ";}
     }
+    
 }// end class LanguageChecker
 
