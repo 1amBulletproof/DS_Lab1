@@ -26,7 +26,7 @@ public class Lab1{
         {
             long start = System.nanoTime();
             long end;
-            String input;  //contains input string 1 line at a time
+            String input = null;  //contains input string 1 line at a time
             String result; //contains matched languages for each input string
            
 //            //code only to test the stack: see Stack_Tester.java
@@ -34,7 +34,11 @@ public class Lab1{
 //            stackTest.test();
 
             File_IO fileIO = new File_IO(args[0], args[1]);
-            input = fileIO.get_NextInput();
+            try{
+                input = fileIO.get_NextInput();
+            }catch (Exception e){
+                System.out.println("An error occurred, please check your input file");
+            }
             while (input != null)
             {
 //                System.out.println(input);
@@ -47,7 +51,11 @@ public class Lab1{
                 input = fileIO.get_NextInput();
             }
             
-            fileIO.close_Output();
+            try{
+                fileIO.close_Output();
+            }catch (Exception e){
+                System.out.println("Could not close the output file: check your input and output file parameters");
+            }
             end = System.nanoTime();
             metrics = new RuntimeMetric(end - start);
             System.out.println("\nThe program ran successfully, please check your output file for the results");
