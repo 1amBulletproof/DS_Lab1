@@ -1,5 +1,3 @@
-
-
 /**
  *The purpose of this class is to check input strings 
  * against preset language definitions (6 total) to see 
