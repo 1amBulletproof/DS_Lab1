@@ -1,16 +1,12 @@
 /**
  * Provides data structure and methods for String File input & output
+ * 
  * @author Brandon Tarney
- * @version 1.0
- * 
- * 
+ * @version 1.0 6/16/15
  */
 import java.io.*;
 import java.util.*;
-/**
- *
- * @author Tarney
- */
+
 public class File_IO {
     
     private String input = new String();
@@ -20,24 +16,35 @@ public class File_IO {
     private Scanner inputScanner;
     private PrintWriter printer;
     
+    
+    /**
+     * Constructor method for File_IO class
+     * <p> Opens two files (1 for input, 1 for output)</p>
+     * 
+     * @param file_in   name of input file to open
+     * @param file_out  name of output file to open
+     */
     public File_IO(String file_in, String file_out)
     {
-         //test i/o
-          inputFile = new File(file_in);
-          outputFile = new File(file_out);   
-          try
-            {
-                inputScanner = new Scanner(inputFile);
-                printer = new PrintWriter(outputFile);
-
-            } catch (Exception e){
+        inputFile = new File(file_in);
+        outputFile = new File(file_out);   
+        //Error handling: in case there is no inputfile
+        try
+        {
+            inputScanner = new Scanner(inputFile);
+            printer = new PrintWriter(outputFile);
+        } catch (Exception e)
+        {
                 System.out.println("There was a problem with the input or output parameters, please try again");
-
-            }
+        }
     }
     
 
-    
+    /**
+     * Returns the next input line in the input file
+     * 
+     * @return  next line in the input as a String
+     */
     public String get_NextInput()
     {
         if (inputScanner.hasNextLine())
@@ -47,11 +54,21 @@ public class File_IO {
         } else {return null;}           
     }
     
+    
+    /**
+     * Writes a line to the output file
+     * 
+     * @param output    what to write to the output file (a string value)
+     */
     public void write_Output(String output)
     {
         printer.println(output);
     }
    
+    
+    /**
+     * Closes the output file
+     */
     public void close_Output()
     {
         printer.close();

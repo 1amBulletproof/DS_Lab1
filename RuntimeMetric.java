@@ -11,8 +11,10 @@
 
 /**
  *  Provides a matched set to determine Big-O runtime metrics.
- *  @version    1.0     2011-05-08
- *  @author     W.T. Door
+ * <p> This is a modified version of the distributed code given for 605.202.</p>
+ * 
+ *  @version    2.0     2011-06-15
+ *  @author     Brandon Tarney
  */
 public class RuntimeMetric {
 
@@ -21,17 +23,17 @@ public class RuntimeMetric {
     /**
      *  A single constructor is used to create each metric.  The metric
      *  cannot be changed after creation.
-     *  @param n The size of the problem.
+     * 
      *  @param t The time it took to solve the problem.
      */
-    public RuntimeMetric (long t) {
-    
-
+    public RuntimeMetric (long t) 
+    {
         runtime = t;
     }
 
     /**
      *  Fetches the time it took to solve the problem.
+     * 
      *  @return The time measured in nanoseconds.
      */
     public long getRuntime() {

@@ -2,24 +2,25 @@
 
 /**
  *The purpose of this class is to check input strings 
- * against preset language definitions to see 
+ * against preset language definitions (6 total) to see 
  * which strings belong to which languages
+ * 
  * @author Tarney
+ * @version 1.0 2015-26-15
  */
 public class LanguageChecker {
-    public Stack_LL_CHAR stack1;
-    private Stack_LL_CHAR stackA;
-    private Stack_LL_CHAR stackB;
-    String resultString = new String();
-    String inputString;
+    public Stack_LL_CHAR stack1; //direct translation of input string
+    private Stack_LL_CHAR stackA; //reference stack used to store 'A's
+    private Stack_LL_CHAR stackB; //reference stack used to store 'B's
+    String resultString = new String(); //final output string which shows which langauges conform
+    String inputString; //string passed into the class to check against l1-l6
     boolean l1,l2,l3,l4,l5,l6; //flags for whether the string conforms to a language
-    enum Vowels {A, E, I, O, U};
-   
+    enum Vowels {A, E, I, O, U};//used for vowel priority
 
-    
     
    /**
     * Class Constructor: instantiates several stacks and the input string
+    * 
     * @param input String that is going to be parsed
     */
     public LanguageChecker(String input)
@@ -31,8 +32,10 @@ public class LanguageChecker {
         stringToStack(inputString);  
     }
     
+    
     /**
      * Converts a String to a Stack data type
+     * 
      * @param input String from which to create a stack
      */
     private void stringToStack(String input)
@@ -42,11 +45,13 @@ public class LanguageChecker {
         }  catch (Exception e) {} //accomodates an empty line scenario     
     }
 
+    
     /**
      * Pop stackA and StackB until at least 1 is empty 
      * to see if they are equal in size
      * note that each stack will be emptied
-     * @return  boolean return whether each stack is of the same size  
+     * 
+     * @return      boolean return whether each stack is of the same size  
      */
     private boolean popCompare()
     {
@@ -58,11 +63,13 @@ public class LanguageChecker {
         return (stackA.is_Empty() && stackB.is_Empty());   
     }
     
+    
     /**
      * Pop StackA once and StackB twice until at least 1 is empty
      * to see if they are equal in size
      * note that each stack will be emptied
-     * @return boolean return whether each stack conforms to L3
+     * 
+     * @return      return whether each stack conforms to L3
      */
     private boolean popB2Compare()
     {
@@ -77,14 +84,14 @@ public class LanguageChecker {
             }
             if (passFlag){return (stackA.is_Empty() && stackB.is_Empty());}
             else{return false;}
-        }
-        
+        }       
     }
     
     
     /**
      * Compare 2 reference stacks based on the size of stackA & stackB
-     * @return boolean return whether each stack conforms to L4
+     * 
+     * @return      boolean return whether each stack conforms to L4
      */
     private boolean popNMCompare(Stack_LL_CHAR refA, Stack_LL_CHAR refB)
     { 
@@ -97,10 +104,41 @@ public class LanguageChecker {
         else {return false;}
     }
     
-
+    
+    /**
+     * Sets the vowel Enum property based on character input
+     * 
+     * @param input character passed to function to check against vowel enum
+     * @return      vowel enum matching the character input
+     */
+    private Vowels setEnum(char input)
+    {
+        Vowels temp = Vowels.A;
+        switch (input) 
+            {
+                case 'A': temp =  Vowels.A;
+                    break;
+                    
+                case 'E': temp =  Vowels.E;
+                    break;
+                       
+                case 'I': temp =  Vowels.I;
+                    break;
+                    
+                case 'O': temp =  Vowels.O;
+                    break;
+                     
+                case 'U': temp =  Vowels.U;
+                    break;       
+            }
+        return temp;
+    }
+    
+    
     /**
      * Check all 5 languages against the input string for the class
-     * @return string result of language checks 
+     * 
+     * @return      string result of language checks 
      */
     public String checkLanguages()
     {
@@ -119,7 +157,8 @@ public class LanguageChecker {
 
     /**
      * Checks an input stack for conformity with #A=#B in any order, 
-     * but there must be no other characters
+     * <p>Sets l2 TRUE if the string matches Language 2
+     * Sets l2 FALSE if the string doesn't match Language 2</p>
      */
     private void checkLanguage1()
     {
@@ -144,8 +183,8 @@ public class LanguageChecker {
     
     /**
      * Checks an input string for A^nB^n n >= 0 
-     * Sets l2 TRUE if the string matches Language 2
-     * Sets l2 FALSE if the string doesn't match Language 2
+     * <p>Sets l2 TRUE if the string matches Language 2
+     * Sets l2 FALSE if the string doesn't match Language 2</p>
      */
     private void checkLanguage2()
     {
@@ -174,8 +213,8 @@ public class LanguageChecker {
 
     /**
      * Checks an input string for A^nB^2n n >= 0 
-     * Sets l3 TRUE if the string matches Language 3
-     * Sets l3 FALSE if the string doesn't match Language 3
+     * <p>Sets l3 TRUE if the string matches Language 3
+     * Sets l3 FALSE if the string doesn't match Language 3</p>
      */
     private void checkLanguage3()
     {
@@ -198,14 +237,14 @@ public class LanguageChecker {
         if (abFlag)//confirm there were no letters other than 'A' or 'B' or empty string
         {
             if (popB2Compare()) {l3 = true;}
-        }    
-        
+        }        
     }
+    
     
     /**
      * Checks an input string for (A^nB^m)P n,m,p >= 0 
-     * Sets l4 TRUE if the string matches Language 4
-     * Sets l4 FALSE if the string doesn't match Language 4
+     * <p>Sets l4 TRUE if the string matches Language 4
+     * Sets l4 FALSE if the string doesn't match Language 4</p>
      */
     private void checkLanguage4()
     {
@@ -257,38 +296,14 @@ public class LanguageChecker {
     }
     
     
-    private Vowels setEnum(char input)
-    {
-        Vowels temp = Vowels.A;
-        switch (input) 
-            {
-                case 'A': temp =  Vowels.A;
-                    break;
-                    
-                case 'E': temp =  Vowels.E;
-                    break;
-                       
-                case 'I': temp =  Vowels.I;
-                    break;
-                    
-                case 'O': temp =  Vowels.O;
-                    break;
-                     
-                case 'U': temp =  Vowels.U;
-                    break;       
-            }
-        return temp;
-    }
-    
-    
     /**
      * Checks input string for language 5 parameters: 
-     * only upper-case vowels are present and are in the order "AEIOU"
+     * <p>only upper-case vowels are present and are in the order "AEIOU"
      * for example, "AI", "IOU", "AIOU", etc are contained in language 5
      * for example, "IA", "OUIEA", "IO", etc are NOT contained in language 5
      * IN KEEPING WITH THE THEME, AN EMPTY STRING WILL QUALIFY AS CORRECT FOR THIS LANGUAGE
      * Sets l5 TRUE if the string matches language 5
-     * Sets l5 FALSE if the string doesn't match Language 5
+     * Sets l5 FALSE if the string doesn't match Language 5</p>
      */
     private void checkLanguage5()
     {
@@ -317,23 +332,23 @@ public class LanguageChecker {
             else { invalidInput = true;}
                     
         }
-        l5 = !invalidInput;
+        l5 = !invalidInput; 
     }
           
     
     /**
      * Checks an input string for the palindrome quality
-     * IN KEEPING WITH THE THEME, AN EMPTY STRING WILL QUALIFY AS CORRECT FOR THIS LANGUAGE
+     * <p>IN KEEPING WITH THE THEME, AN EMPTY STRING WILL QUALIFY AS CORRECT FOR THIS LANGUAGE
      * ALSO, SINGLE SYMBOLS WILL QUALIFY AS WELL: THEY TECHNICALLY ARE THE SAME BACKWARDS AND FORWARDS
      * for example, "ANA", "KAYAK", "NO LEMON NO MELON", etc are contained in language 6
      * for example, "", "I HATE THIS CLASS", "JK, I LIKE IT", etc are NOT contained in language 6
      * Sets l5 TRUE if the string matches language 6
-     * Sets l5 FALSE if the string doesn't match Language 6
+     * Sets l5 FALSE if the string doesn't match Language 6</p>
      */
     private void checkLanguage6()
     {
         stack1.emptyStack(); //clear the stack for use and fill it again
-        stringToStack(inputString);
+        stringToStack(inputString); //reset the input stack
         char temp,stackTemp;
         boolean palindromeFlag = true;
         for (int i = 0; i < inputString.length(); i++)
@@ -359,6 +374,7 @@ public class LanguageChecker {
         if (l5 == true) {resultString += " L5 ";}
         if (l6 == true) {resultString += " L6 ";}
     }
+    
     
 }// end class LanguageChecker
 
